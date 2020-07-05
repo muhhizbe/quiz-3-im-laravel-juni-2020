@@ -12,7 +12,20 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('erd');
+});
+Route::get('/home', function () {
+    return view('layouts.master');
+});
+
+Route::prefix('artikel')->group(function () {
+    Route::get('/', 'ArtikelController@index');
+    Route::get('/create', 'ArtikelController@create');
+    Route::post('/', 'ArtikelController@store');
+    Route::get('/{id}', 'ArtikelController@show');
+    Route::get('/{id}/edit', 'ArtikelController@edit');
+    Route::put('/{id}', 'ArtikelController@update');
+    Route::delete('/{id}', 'ArtikelController@destroy');
 });
 
 Route::get('/items/create', 'ItemController@create'); // menampilkan halaman form
